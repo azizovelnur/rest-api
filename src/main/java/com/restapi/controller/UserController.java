@@ -16,9 +16,8 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public List<User> createUser(@RequestBody UserDTO userDTO) {
-        User createdUser = userService.createUser(userDTO);
-        return List.of(createdUser);
+    public User createUser(@RequestBody UserDTO userDTO) {
+        return userService.createUser(userDTO);
     }
 
     @GetMapping
@@ -27,8 +26,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public List<User> getUserById(@PathVariable Long userId) {
-        User user = userService.getUserById(userId);
-        return List.of(user);
+    public User getUserById(@PathVariable Long userId) {
+        return userService.getUserById(userId);
     }
 }

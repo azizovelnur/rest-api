@@ -1,6 +1,7 @@
 package com.restapi.service;
 
 import com.restapi.dto.UserDTO;
+import com.restapi.model.Post;
 import com.restapi.model.User;
 import com.restapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,11 +23,24 @@ public class UserService {
     }
 
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        List<User> users = userRepository.findAll();
+        for (User user : users) {
+            List<Post> posts = user.getPosts();
+            for (Post post : posts) {
+                post.setUser(null);
+            }
+        }
+        return users;
     }
 
+
     public User getUserById(Long userId) {
-        return userRepository.findById(userId)
+        User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
+        List<Post> posts = user.getPosts();
+        for (Post post : posts) {
+            post.setUser(null);
+        }
+        return user;
     }
 }
