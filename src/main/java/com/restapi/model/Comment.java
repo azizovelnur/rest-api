@@ -3,8 +3,6 @@ package com.restapi.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Date;
-
 @Data
 @Entity
 @Table(name = "comments")
@@ -23,12 +21,4 @@ public class Comment {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "postId", nullable = false)
     private Post post;
-
-    @Column(name = "createdAt", nullable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-
-    @Column(name = "updatedAt", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
 }

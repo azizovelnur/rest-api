@@ -17,11 +17,8 @@ public class Post {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "text", nullable = false)
-    private String text;
-
-    @Column(name = "viewCount", nullable = false)
-    private int viewCount;
+    @Column(name = "content", nullable = false)
+    private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId", nullable = false)
@@ -29,15 +26,4 @@ public class Post {
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> comments;
-
-    @Column(name = "imageUrl")
-    private String imageUrl;
-
-    @Column(name = "createdAt", nullable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-
-    @Column(name = "updatedAt", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
 }
