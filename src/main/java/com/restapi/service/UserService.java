@@ -28,6 +28,7 @@ public class UserService {
             List<Post> posts = user.getPosts();
             for (Post post : posts) {
                 post.setUser(null);
+                post.setComments(null);
             }
         }
         return users;
